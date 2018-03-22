@@ -2,6 +2,6 @@
 #define _MERGE_SORT_H
 
 
-
+void MergeSorts(int *Array,int ArrayLength);
 
 #endif

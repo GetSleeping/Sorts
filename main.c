@@ -23,9 +23,12 @@ int main(void) {
 		return 0;
 	}
 
-	for(i = 0;i < ArrayLength;++i) {
+	for(i = 0;i < ArrayLength;) {
 		Array[i] = (rand() % ARRAY_MAX_VALUE) - (ARRAY_MAX_VALUE >> 1);
-		printf("%d,",Array[i]);
+		printf("%5d,",Array[i++]);
+		if (!(i % 5)) {
+			printf("\n");
+		}
 	}
 	printf("\n");
 
