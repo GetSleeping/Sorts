@@ -40,7 +40,7 @@ static void Merge(int *Array,int startIndex,int midIndex,int endIndex)
 		ArrayTemp[index++] = Array[startIndexRight];
 	}
 
-	for(i = 0;i < (endIndex - startIndex) + 1,i++)
+	for(i = 0;i < (endIndex - startIndex) + 1;i++)
 	{
 		Array[startIndex + i] = ArrayTemp[i];
 	}
@@ -57,7 +57,7 @@ static void mainMergeSorts(int *Array,int startIndex,int endIndex)
 	{
 		mainMerge(Array,startIndex,midIndex);
 		mainMerge(Array,midIndex+1,endIndex);
-		//Merge(Array,startIndex,midIndex,endIndex);
+		Merge(Array,startIndex,midIndex,endIndex);
 	}
 }
 
