@@ -2,10 +2,12 @@
 
 
 
-void InsertSort(int *Array,unsigned char ArrayLength) {
-	unsigned char i;
+void InsertionSort(int *Array,int ArrayLength) {
+	int i;
 	short PreIndex;
 	int DataTemp;
+
+	printf("enter %s\n",__FUNCTION__);
 
 	for(i = 1;i < ArrayLength;++i) {
 		PreIndex = i - 1;
@@ -17,12 +19,4 @@ void InsertSort(int *Array,unsigned char ArrayLength) {
 
 		Array[PreIndex+1] = DataTemp;
 	}
-
-	for(i = 0;i < ArrayLength;++i) {
-		printf("%5d,",Array[i]);
-		if(!(i%5)) {
-			printf("\n");
-		}
-	}
-
 }

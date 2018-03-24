@@ -2,6 +2,6 @@
 #define _SELECTION_SORT_H
 
 
-
+void SelectionSort(int *Array,int ArrayLength);
 
 #endif

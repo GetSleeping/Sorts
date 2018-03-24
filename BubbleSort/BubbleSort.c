@@ -2,13 +2,16 @@
 
 
 
-
-void BubbleSort(int *Array,unsigned char ArrayLength) {
-	unsigned char i,j;
+/**
+ * @function:BubbleSort
+ * @parameter:array address ,array length
+ */
+void BubbleSort(int *Array,int ArrayLength) {
+	int i,j;
 	int DataTemp;
 	
+	printf("enter %s\n",__FUNCTION__);
 
-	printf("Enter %s\n",__FUNCTION__);
 	for(i = 0;i < ArrayLength;++i) {
 		for(j = 0;j < ArrayLength - 1 - j;++j) {
 			if (Array[j] > Array[j + 1]) {
@@ -17,12 +20,5 @@ void BubbleSort(int *Array,unsigned char ArrayLength) {
 				Array[j + 1] = DataTemp;
 			}
 		}	
-	}
-
-	for(i = 0;i < ArrayLength;) {
-		printf("%d,",Array[i++]);
-		if(!(i % 5)) {
-			printf("\n");
-		}
 	}
 }
