@@ -38,7 +38,7 @@ static void Merge(int *Array,int startIndex,int midIndex,int endIndex)
 
 	while(startIndexRight <= endIndexRight)
 	{
-		ArrayTemp[index++] = Array[startIndexRight];
+		ArrayTemp[index++] = Array[startIndexRight++];
 	}
 
 	for(i = 0;i < (endIndex - startIndex) + 1;i++)
@@ -50,7 +50,7 @@ static void Merge(int *Array,int startIndex,int midIndex,int endIndex)
 }
 
 
-void mainMergeSorts(int *Array,int startIndex,int endIndex)
+static void mainMergeSorts(int *Array,int startIndex,int endIndex)
 {
 	int midIndex = (startIndex + endIndex) >> 1;
 	
