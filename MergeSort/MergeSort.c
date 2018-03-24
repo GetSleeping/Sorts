@@ -69,6 +69,8 @@ static void mainMergeSorts(int *Array,int startIndex,int endIndex)
 
 void MergeSort(int *Array,int ArrayLength)
 {
+	printf("enter %s\n",__FUNCTION__);
 	mainMergeSorts(Array,0,ArrayLength-1);	
+
 }
 
