@@ -1,5 +1,10 @@
 #include <stdio.h>
 
+/**
+* @function:SelectionSort
+* @parameter:the array address, array length
+* @des:
+*/
 void SelectionSort(int *Array,int ArrayLength) {
 	int i,j,MinIndex = 0;
 	int DataTemp;
