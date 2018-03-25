@@ -1,7 +1,11 @@
 #include <stdio.h>
 
 
-
+/**
+* @function:InsertionSort
+* @parameter:the array address,the array length
+* @des:
+*/
 void InsertionSort(int *Array,int ArrayLength) {
 	int i;
 	short PreIndex;
