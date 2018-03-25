@@ -22,7 +22,6 @@
 */
 void (*callBackSortFunc[])(int *,int ) = {
 	&BubbleSort,
-	NULL,
 	&BucketSort,
 	&CountingSort,
 	&HeapSort,
@@ -44,13 +43,12 @@ void (*callBackSortFunc[])(int *,int ) = {
 */
 void printArray(int *Array,int ArrayLength){
 	int i;
-	for(i = 0;i < ArrayLength;i++) { 
+	for(i = 0;i < ArrayLength;) { 
 		printf("%3d,",Array[i]);
-		if(!(i%5)){
+		if(!(++i%5)){
 			printf("\n");
 		} 
 	}
-	printf("\n");
 }
 
 /**
@@ -59,9 +57,9 @@ void printArray(int *Array,int ArrayLength){
 * @des:
 */
 int main(void) {
-	int *Array;
-	int ArrayLength;
-	int i = 0;
+	int *Array = NULL;
+	int ArrayLength = 0;
+	int i = 0,j = 0;
 
 	struct timeval tv;
 	unsigned int TimeDiff,TimePoint;
@@ -74,138 +72,32 @@ int main(void) {
 		printf("array malloc failed!\n");
 		return 0;
 	}	
-	for(i = 0;i < ArrayLength;i++) {
-		Array[i] =  (rand() % ARRAY_MAX_VALUE) - (ARRAY_MAX_VALUE >> 1);
-	}
-
-	printArray(Array,ArrayLength);
 	
 	/** @des:call the sort functions */
-	i = 0;
-	while(NULL != callBackSortFunc[i++]) {
+	while(NULL != callBackSortFunc[j]) {
+
+    	for(i = 0;i < ArrayLength;i++) {
+            Array[i] =  (rand() % ARRAY_MAX_VALUE) - (ARRAY_MAX_VALUE >> 1);
+	    }
+        printf("Before sort\n");
+        printArray(Array,ArrayLength);
+
 		gettimeofday(&tv,NULL);
 		TimePoint = tv.tv_usec;
-		callBackSortFunc[i](Array,ArrayLength);
+
+		(callBackSortFunc[j++])(Array,ArrayLength);
+
 		gettimeofday(&tv,NULL);
 		TimeDiff = tv.tv_usec - TimePoint;
-	#if 0
+
+	#if 1
+        printf("After sort\n");
 		printArray(Array,ArrayLength);
 	#endif
-		printf("Time cost is %d\n",TimeDiff);
+
+		printf("Time cost is %d\n\n",TimeDiff);
 	}
 	
-#if 0
-	/** @des:BubbleSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	BubbleSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("BubbleSort time cost is %d\n",TimeDiff);
-
-	/** @des:BucketSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	BucketSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("BucketSort time cost is %d\n",TimeDiff);
-	
-	/** @des:CountingSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	CountingSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("CountingSort time cost is %d\n",TimeDiff);
-	
-	/** @des:HeapSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	HeapSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("HeapSort time cost is %d\n",TimeDiff);
-	
-	/** @des:InsertionSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	InsertionSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("InsertionSort time cost is %d\n",TimeDiff);
-	
-	/** @des:MergeSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	MergeSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("MergeSort time cost is %d\n",TimeDiff);
-	
-	/** @des:QuickSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	QuickSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("QuickSort time cost is %d\n",TimeDiff);
-	
-	/** @des:RadixSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	RadixSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("RadixSort time cost is %d\n",TimeDiff);
-	
-	/** @des:SelectionSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	SelectionSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("SelectionSort time cost is %d\n",TimeDiff);
-	
-	/** @des:ShellSort time cost test*/
-	gettimeofday(&tv,NULL);
-	TimePoint = tv.tv_usec;
-	ShellSort(Array,ArrayLength);
-	gettimeofday(&tv,NULL);
-	TimeDiff = tv.tv_usec - TimePoint;
-#if 0
-	printArray(Array,ArrayLength);
-#endif
-	printf("ShellSort time cost is %d\n",TimeDiff);
-	
-#endif
 	free(Array);
 	printf("exit main\n");
 	return 0;
