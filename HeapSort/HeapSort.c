@@ -76,7 +76,7 @@ void HeapSort(int *Array,int ArrayLength)
 	
 	for(i = ArrayLength - 1;i >= 1;i--) {
 		swap(&(Array[0]),&(Array[i]));
-		maxHeapAdjust(Array,1,--heapSize);
+		maxHeapAdjust(Array,0,--heapSize);
 	}
 }
 
